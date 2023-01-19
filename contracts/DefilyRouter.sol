@@ -8,6 +8,8 @@ import "./interfaces/IWETH.sol";
 import "./libraries/DefilyLibrary.sol";
 import "./libraries/TransferHelper.sol";
 
+import "../node_modules/hardhat/console.sol";
+
 contract DefilyRouter is IDefilyRouter {
     address public immutable override factory;
     address public immutable override WETH;
@@ -382,6 +384,8 @@ contract DefilyRouter is IDefilyRouter {
             DefilyLibrary.pairFor(factory, path[0], path[1]),
             amounts[0]
         );
+        console.log("amount_0: ", amounts[0]);
+        console.log("amount_1: ", amounts[1]);
         _swap(amounts, path, to);
     }
 

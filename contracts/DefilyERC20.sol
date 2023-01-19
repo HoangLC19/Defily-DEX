@@ -2,6 +2,7 @@
 pragma solidity >= 0.8.0 <= 0.9.0;
 
 import "./interfaces/IDefilyERC20.sol";
+import "../node_modules/hardhat/console.sol";
 
 contract DefilyERC20 is IDefilyERC20 {
     string public constant name = "DEFILY LPs";
@@ -60,6 +61,8 @@ contract DefilyERC20 is IDefilyERC20 {
 
     function transferFrom(address from, address to, uint256 value) external returns (bool) {
         if (allowance[from][msg.sender] != type(uint256).max) {
+            console.log("sender: ", msg.sender);
+            console.log("user balance: ", balanceOf[from]);
             allowance[from][msg.sender] -= value;
         }
         _transfer(from, to, value);
